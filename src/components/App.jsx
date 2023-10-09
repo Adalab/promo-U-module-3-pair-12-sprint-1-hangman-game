@@ -4,13 +4,12 @@ import { useState } from 'react';
 
 function App() {
 
-  const [numberOfErrors, setCountErrors] = useState(0);
+  const [numberOfErrors, setNumberOfErrors] = useState(0);
 
   const handleButton = (ev) => {
     ev.preventDefault();
-    setCountErrors(numberOfErrors + 1);
+    setNumberOfErrors(numberOfErrors + 1);
   };
-
 
   return (
     <div className="page">
