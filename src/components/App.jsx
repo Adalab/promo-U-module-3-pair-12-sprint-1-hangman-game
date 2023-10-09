@@ -1,6 +1,17 @@
 import '../styles/App.scss';
 
+import { useState } from 'react';
+
 function App() {
+
+  const [numberOfErrors, setCountErrors] = useState(0);
+
+  const handleButton = (ev) => {
+    ev.preventDefault();
+    setCountErrors(numberOfErrors + 1);
+  };
+
+
   return (
     <div className="page">
       <header>
@@ -43,9 +54,10 @@ function App() {
               name="last-letter"
               id="last-letter"
             />
+            <button onClick={handleButton}>Incrementar</button>
           </form>
         </section>
-        <section className="dummy error-5">
+        <section className={`dummy error-${numberOfErrors}`}>
           <span className="error-13 eye"></span>
           <span className="error-12 eye"></span>
           <span className="error-11 line"></span>
