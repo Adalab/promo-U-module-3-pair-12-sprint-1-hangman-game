@@ -5,6 +5,8 @@ import { useState } from 'react';
 function App() {
   const [numberOfErrors, setNumberOfErrors] = useState(0);
   const [lastLetter, setLastLetter] = useState('');
+  const [word, setWord] = useState('flowerpower');
+  const [userLetters, setUserLetters] = useState([]);
 
   const handleButton = (ev) => {
     ev.preventDefault();
@@ -16,8 +18,22 @@ function App() {
     const letters = /^[a-zA-ZÀ-ÖØ-öø-ÿ]+$/;
     if (value === '' || letters.test(value)) {
       setLastLetter(value);
-    }
+      // setUserLetters(value);
+    } 
   };
+
+  const renderSolutionLetters = () => {
+    const wordLetters = word.split('');
+    console.log(wordLetters);
+    return wordLetters.map((eachLetter, index) => {
+    if (wordLetters.includes(lastLetter)){
+       return <li key={index} className="letter">{eachLetter}</li>
+      } else {
+       return <li key={index} className="letter"></li>
+      }
+    }); 
+  };
+// Nos quedamos en que hay que introducir la informacion que necesitamos en el array corespondiente. Nos hemos planteado crear diferentes arrays para la diferente informacion que tengamos que printar en pantalla en cada momento. 
 
   return (
     <div className='page'>
@@ -29,16 +45,7 @@ function App() {
           <div className='solution'>
             <h2 className='title'>Solución:</h2>
             <ul className='letters'>
-              <li className='letter'>k</li>
-              <li className='letter'>a</li>
-              <li className='letter'></li>
-              <li className='letter'>a</li>
-              <li className='letter'>k</li>
-              <li className='letter'>r</li>
-              <li className='letter'></li>
-              <li className='letter'>k</li>
-              <li className='letter'>e</li>
-              <li className='letter'>r</li>
+              {renderSolutionLetters()}
             </ul>
           </div>
           <div className='error'>
