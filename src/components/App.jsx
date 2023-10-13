@@ -18,20 +18,41 @@ function App() {
     const letters = /^[a-zA-ZÀ-ÖØ-öø-ÿ]+$/;
     if (value === '' || letters.test(value)) {
       setLastLetter(value);
-      // setUserLetters(value);
+      setUserLetters([...userLetters, lastLetter]);
+      console.log(userLetters);
     } 
   };
 
   const renderSolutionLetters = () => {
     const wordLetters = word.split('');
     console.log(wordLetters);
-    return wordLetters.map((eachLetter, index) => {
-    if (wordLetters.includes(lastLetter)){
-       return <li key={index} className="letter">{eachLetter}</li>
-      } else {
-       return <li key={index} className="letter"></li>
-      }
-    }); 
+    return wordLetters
+    .filter((letter) => userLetters.includes(letter))
+    .map((letter, index) => {
+      return (<li key={index} className="letter">{letter}</li>);
+    });
+
+
+ // solucion que hemos propuesto para que se nos muestren todos los li (vacios y llenos)
+    // const renderSolutionLetters = () => {
+    // const wordLetters = word.split('');
+    // console.log(wordLetters);
+    // if (wordLetters.filter((letter) => userLetters.includes(letter)))
+    // {wordLetters.map((letter, index) => {
+    //   return (<li key={index} className="letter">{letter}</li>);
+    // });} else {wordLetters.map((letter, index) => {
+    //   return (<li key={index} className="letter"></li>);
+    // });
+    // return wordLetters;
+    // }
+
+    // return wordLetters.map((eachLetter, index) => {
+    // if (wordLetters.includes(lastLetter)){
+    //    return <li key={index} className="letter">{eachLetter}</li>
+    //   } else {
+    //    return <li key={index} className="letter"></li>
+    //   }
+    // }); 
   };
 // Nos quedamos en que hay que introducir la informacion que necesitamos en el array corespondiente. Nos hemos planteado crear diferentes arrays para la diferente informacion que tengamos que printar en pantalla en cada momento. 
 
